@@ -1,20 +1,26 @@
-class BedFrame:
-    def _initial_(self, color="Default Color", material="Default Material"):
-        self.color = color
-        self.material = material
-
+class Bed:
+    def __init__(self, color, material):
+        self.__color = color
+        self.__material = material
+    
     def set_color(self, color):
-        self.color = color
+        self.__color = color
 
     def set_material(self, material):
-        self.material = material
+        self.__material = material
 
     def get_color(self):
-        return self.color
+        return self.__color
 
     def get_material(self):
-        return self.material
-
+        return self.__material
+    
     def display(self):
-        print(f"Bed Frame Color: {self.color}")
-        print(f"Bed Frame Material: {self.material}")
+        print(f"Bed Color: {self.__color}")
+        print(f"Bed Material: {self.__material}")
+
+
+
+Richbond = Bed("blue", "cotton")
+Mizidor = Bed("black", "poly")
+Richbond.display()
