@@ -19,12 +19,6 @@ class Bed:
         print(f"Bed Color: {self._color}")
         print(f"Bed Material: {self._material}")
 
-Richbond = Bed("blue", "cotton")
-Mizidor = Bed("black", "polyster")
-Richbond.display()
-Mizidor.display()
-
-
 class BedFilling:
     def __init__(self, material, type):
         self._material = material
@@ -47,12 +41,6 @@ class BedFilling:
         print(f"Bed Filling Material: {self._material}")
         print(f"Bed Filling Type: {self._type}")
 
-
-Richbond = BedFilling("Wool", "eco-friendly")
-Richbond.display()
-
-Mizidor = BedFilling("Foam", "economic")
-Mizidor.display()
 
 class BedFrame:
     def __init__(self, material, color):
@@ -101,11 +89,6 @@ class Bedd:
         for pillow in self._pillows:
             print(pillow)
 
-
-custom_frame = BedFrame("Wood", "Oak")
-custom_filling = BedFilling("Foam", "Memory Foam")
-HER = Bedd("QUEEN", has_storage=True, frame=custom_frame, filling=custom_filling)
-HER.display()
 
 class BunkBed(Bed):
     max_safety_features = 10
@@ -179,20 +162,41 @@ class BunkBed(Bed_safety):
         print(f"Filling: {self._filling}")
         print(f"Number of Levels: {self._number_of_levels}")
         print("Safety Features: " + ", ".join(self._safety_features))
-bunk_bed = BunkBed(
-    size="Twin",
-    material="Wood",
-    has_storage=True,
-    frame="Metal",
-    filling="Foam",
-    number_of_levels=2,
-    safety_features=["Guard Rails", "Ladder", "Non-slip Steps"]
-)
 
-bunk_bed.display()
 
-bunk_bed.set_safety_features(["Guard Rails", "Ladder", "Non-slip Steps", "Corner Pads"])
-bunk_bed.display()
+def create_bed():
+    color = input("Enter the bed color: ")
+    material = input("Enter the bed material: ")
+    return Bed(color, material)
 
-bunk_bed.set_number_of_levels(3)
-bunk_bed.display()
+def create_bed_filling():
+    material = input("Enter the bed filling material: ")
+    type = input("Enter the bed filling type: ")
+    return BedFilling(material, type)
+
+def create_bed_frame():
+    material = input("Enter the bed frame material: ")
+    color = input("Enter the bed frame color: ")
+    return BedFrame(material, color)
+
+def create_bunk_bed():
+    size = input("Enter the bunk bed size: ")
+    material = input("Enter the bunk bed material: ")
+    has_storage = input("Does the bunk bed have storage? (yes/no): ").lower() == 'yes'
+    frame = create_bed_frame()
+    filling = create_bed_filling()
+    number_of_levels = int(input("Enter the number of levels: "))
+    safety_features = input("Enter safety features (comma separated): ").split(", ")
+    return BunkBed(size, material, has_storage, frame, filling, number_of_levels, safety_features)
+
+def main():
+    print("Dear sleep lover, time to create a bed ")
+    bed = create_bed()
+    bed.display()
+    
+    print("\nCreate a bunk bed:")
+    bunk_bed = create_bunk_bed()
+    bunk_bed.display()
+
+if __name__ == "__main__":
+    main()
